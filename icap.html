@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ischus Media — Production Rental Catalog</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0D0E10;
+    --cream: #F5F0E8;
+    --gold: #C49A28;
+    --gold-lt: #E8D48A;
+    --gold-dk: #8A6A10;
+    --slate: #1A2535;
+    --slate-lt: #2E3F58;
+    --mist: #B8C4D0;
+    --white: #FAFAFA;
+    --red: #C0392B;
+    --green: #1A8A5A;
+    --r: 6px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    background: linear-gradient(160deg, #0D0E10 0%, #1A2535 60%, #0D1A10 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(196,154,40,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(26,37,53,0.8) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(196,154,40,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(196,154,40,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 28px 60px;
+    position: relative; z-index: 10;
+    border-bottom: 1px solid rgba(196,154,40,0.15);
+  }
+  .logo-mark {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: var(--ink);
+  }
+  .logo-text { line-height: 1.1; }
+  .logo-text .brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--cream); }
+  .logo-text .sub { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+  .nav-tag {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--mist); font-family: 'DM Mono', monospace;
+  }
+
+  .hero-body {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 60px;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--gold); opacity: 0.5;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 160px);
+    line-height: 0.88;
+    letter-spacing: 2px;
+    background: linear-gradient(160deg, #FAFAFA 0%, #C49A28 50%, #8A6A10 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 32px;
+  }
+  .hero-sub {
+    font-size: 16px; color: var(--mist); max-width: 520px;
+    line-height: 1.8; margin-bottom: 48px;
+  }
+  .hero-sub span { color: var(--gold-lt); font-weight: 500; }
+  .hero-cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    padding: 14px 32px; background: var(--gold); color: var(--ink);
+    font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    border: none; cursor: pointer; border-radius: var(--r);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); }
+  .btn-outline {
+    padding: 14px 32px; background: transparent;
+    border: 1px solid rgba(196,154,40,0.4); color: var(--cream);
+    font-weight: 500; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; border-radius: var(--r);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    padding: 32px 60px;
+    display: flex; gap: 0;
+    border-top: 1px solid rgba(196,154,40,0.15);
+    position: relative; z-index: 2;
+  }
+  .stat {
+    flex: 1; text-align: center; padding: 20px;
+    border-right: 1px solid rgba(196,154,40,0.1);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-n {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px; color: var(--gold); line-height: 1;
+  }
+  .stat-l { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--mist); margin-top: 4px; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 6px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1; letter-spacing: 1px;
+    color: var(--cream); margin-bottom: 20px;
+  }
+  .section-desc { color: var(--mist); max-width: 600px; line-height: 1.8; margin-bottom: 60px; }
+
+  /* ── PACKAGES ── */
+  .packages { background: #0A0B0D; }
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    background: rgba(196,154,40,0.08);
+    border: 1px solid rgba(196,154,40,0.12);
+    border-radius: 12px; overflow: hidden;
+    margin-bottom: 60px;
+  }
+  .pkg-card {
+    background: #0D0E10;
+    padding: 40px 32px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.25s;
+  }
+  .pkg-card:hover { background: #141618; }
+  .pkg-card.featured {
+    background: linear-gradient(160deg, #12180A 0%, #0D160A 100%);
+    border-left: 2px solid var(--gold);
+  }
+  .pkg-card.featured:hover { background: #151d0d; }
+  .pkg-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    background: rgba(196,154,40,0.15); color: var(--gold);
+    border: 1px solid rgba(196,154,40,0.2);
+  }
+  .pkg-card.featured .pkg-badge {
+    background: var(--gold); color: var(--ink); border-color: var(--gold);
+  }
+  .pkg-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px; letter-spacing: 2px; color: var(--cream);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .pkg-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 54px; color: var(--gold); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pkg-price-note { font-size: 11px; color: var(--mist); margin-bottom: 28px; font-family: 'DM Mono', monospace; }
+  .pkg-divider { height: 1px; background: rgba(196,154,40,0.12); margin-bottom: 24px; }
+  .pkg-features { list-style: none; margin-bottom: 28px; }
+  .pkg-features li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 13px; color: var(--mist); margin-bottom: 8px; line-height: 1.5;
+  }
+  .pkg-features li .icon { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+  .pkg-desc { font-size: 12px; color: #5A6070; line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
+
+  /* ── EQUIPMENT RENTAL ── */
+  .equip { background: var(--ink); }
+  .equip-tabs {
+    display: flex; gap: 0; margin-bottom: 40px;
+    border: 1px solid rgba(196,154,40,0.15); border-radius: var(--r);
+    overflow: hidden; width: fit-content;
+  }
+  .tab {
+    padding: 10px 24px; cursor: pointer;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 600; transition: all 0.2s;
+    background: transparent; border: none; color: var(--mist);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tab.active { background: var(--gold); color: var(--ink); }
+  .tab:hover:not(.active) { color: var(--gold); }
+
+  .equip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .equip-card {
+    background: #111316;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 24px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .equip-card:hover {
+    border-color: rgba(196,154,40,0.3);
+    transform: translateY(-3px);
+  }
+  .equip-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px;
+  }
+  .equip-name {
+    font-size: 16px; font-weight: 700; color: var(--cream);
+    margin-bottom: 6px; line-height: 1.3;
+  }
+  .equip-desc { font-size: 12px; color: #5A6070; line-height: 1.6; flex: 1; margin-bottom: 20px; }
+  .equip-pricing {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .price-chip {
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+  }
+  .price-chip.half { background: rgba(196,154,40,0.08); color: var(--gold); border: 1px solid rgba(196,154,40,0.15); }
+  .price-chip.full { background: rgba(196,154,40,0.18); color: var(--gold-lt); border: 1px solid rgba(196,154,40,0.25); }
+  .equip-avail {
+    position: absolute; top: 18px; right: 18px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #1A8A5A;
+    box-shadow: 0 0 0 3px rgba(26,138,90,0.2);
+  }
+
+  /* ── ADD-ONS ── */
+  .addons { background: #0A0B0D; }
+  .addon-table {
+    width: 100%; border-collapse: collapse;
+    border: 1px solid rgba(196,154,40,0.12);
+    border-radius: 10px; overflow: hidden;
+  }
+  .addon-table th {
+    background: rgba(196,154,40,0.12);
+    color: var(--gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    text-align: left; padding: 16px 24px;
+    font-weight: 600; font-family: 'DM Mono', monospace;
+  }
+  .addon-table td {
+    padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.04);
+    font-size: 14px; color: var(--cream);
+    vertical-align: middle;
+  }
+  .addon-table tr:hover td { background: rgba(196,154,40,0.03); }
+  .addon-table .price { color: var(--gold); font-family: 'DM Mono', monospace; font-weight: 500; }
+  .addon-table .note { font-size: 11px; color: var(--mist); margin-top: 3px; }
+
+  /* ── POLICIES ── */
+  .policies { background: var(--ink); }
+  .policy-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .policy-card {
+    background: #111316;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px; padding: 28px;
+  }
+  .policy-icon { font-size: 28px; margin-bottom: 14px; }
+  .policy-title { font-weight: 700; font-size: 15px; color: var(--cream); margin-bottom: 10px; }
+  .policy-text { font-size: 13px; color: var(--mist); line-height: 1.7; }
+
+  /* ── CONTACT ── */
+  .contact-strip {
+    background: linear-gradient(135deg, var(--slate) 0%, #0D1A10 100%);
+    border-top: 1px solid rgba(196,154,40,0.2);
+    padding: 80px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 40px;
+  }
+  .contact-left .big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1; color: var(--cream);
+  }
+  .contact-left .big span { color: var(--gold); }
+  .contact-left .sub { color: var(--mist); margin-top: 12px; font-size: 14px; }
+  .contact-info { display: flex; flex-direction: column; gap: 12px; }
+  .contact-row {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14px;
+  }
+  .contact-row .label {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold);
+    min-width: 80px;
+  }
+  .contact-row .val { color: var(--cream); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 24px 60px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+    font-size: 11px; color: #3A4050;
+    font-family: 'DM Mono', monospace; letter-spacing: 1px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-body > * { animation: fadeUp 0.7s ease both; }
+  .hero-body > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-body > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-body > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-body > *:nth-child(4) { animation-delay: 0.55s; }
+
+  /* note tag */
+  .note-tag {
+    display: inline-block;
+    background: rgba(192,57,43,0.12); color: #E57373;
+    border: 1px solid rgba(192,57,43,0.2);
+    border-radius: 4px; padding: 3px 10px;
+    font-size: 11px; font-family: 'DM Mono', monospace;
+  }
+
+  @media (max-width: 768px) {
+    nav, section, .hero-body, .hero-stats, .contact-strip, footer { padding-left: 24px; padding-right: 24px; }
+    .hero-stats { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid rgba(196,154,40,0.1); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <nav>
+    <div class="logo-mark">
+      <div class="logo-icon">IM</div>
+      <div class="logo-text">
+        <div class="brand">Ischus Media</div>
+        <div class="sub">Production Services</div>
+      </div>
+    </div>
+    <div class="nav-tag">Dar es Salaam · Tanzania</div>
+  </nav>
+
+  <div class="hero-body">
+    <div class="hero-eyebrow">Production Rental Catalog 2026</div>
+    <div class="hero-title">CAPTURE<br>WITHOUT<br>LIMITS</div>
+    <p class="hero-sub">
+      Professional-grade camera systems, cinema lighting, and audio gear — available for <span>half-day, full-day, and multi-day</span> hire in Dar es Salaam.
+    </p>
+    <div class="hero-cta-row">
+      <button class="btn-primary" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">View Packages</button>
+      <button class="btn-outline" onclick="document.getElementById('equipment').scrollIntoView({behavior:'smooth'})">Browse Equipment</button>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-n">4K</div><div class="stat-l">Cinema Quality</div></div>
+    <div class="stat"><div class="stat-n">3</div><div class="stat-l">Camera Systems</div></div>
+    <div class="stat"><div class="stat-n">24hr</div><div class="stat-l">Turnaround</div></div>
+    <div class="stat"><div class="stat-n">DSM</div><div class="stat-l">Dar es Salaam</div></div>
+  </div>
+</div>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="section-label">Session Packages</div>
+  <div class="section-title">FULL PRODUCTION<br>BUNDLES</div>
+  <p class="section-desc">All-in-one session packages for podcasts, interviews, documentaries, and social content. Operator not included — self-operated or add crew as an add-on.</p>
+
+  <div class="packages-grid">
+
+    <!-- BRONZE -->
+    <div class="pkg-card">
+      <div class="pkg-badge">BRONZE</div>
+      <div class="pkg-name">Essential</div>
+      <div class="pkg-price">180,000</div>
+      <div class="pkg-price-note">TZS / HALF DAY (4 hrs)</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="icon">◆</span>1× Sony A7 III + stand</li>
+        <li><span class="icon">◆</span>1× DJI Mic Mini (wireless)</li>
+        <li><span class="icon">◆</span>1× Godox SL 150 key light + stand</li>
+        <li><span class="icon">◆</span>Basic cable kit</li>
+      </ul>
+      <div class="pkg-desc">Ideal for solo interviews, talking head content, YouTube vlogs, or quick social clips. 4K capable.</div>
+    </div>
+
+    <!-- BRONZE FULL DAY -->
+    <div class="pkg-card">
+      <div class="pkg-badge">BRONZE+</div>
+      <div class="pkg-name">Essential+</div>
+      <div class="pkg-price">300,000</div>
+      <div class="pkg-price-note">TZS / FULL DAY (8 hrs)</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="icon">◆</span>1× Sony A7 III + stand</li>
+        <li><span class="icon">◆</span>1× DJI Mic Mini (wireless)</li>
+        <li><span class="icon">◆</span>1× Godox SL 150 + stand</li>
+        <li><span class="icon">◆</span>1× Lantern light</li>
+        <li><span class="icon">◆</span>Basic cable kit + SD card</li>
+      </ul>
+      <div class="pkg-desc">Full day version with added lantern. Best for documentary shoots, long-form recording sessions.</div>
+    </div>
+
+    <!-- SILVER -->
+    <div class="pkg-card featured">
+      <div class="pkg-badge">★ MOST POPULAR</div>
+      <div class="pkg-name">Studio</div>
+      <div class="pkg-price">350,000</div>
+      <div class="pkg-price-note">TZS / HALF DAY (4 hrs)</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="icon">◆</span>1× Canon R6 Mark II + stand</li>
+        <li><span class="icon">◆</span>1× DJI Mic Mini + 1× lapel backup</li>
+        <li><span class="icon">◆</span>1× Godox SL 150 key light</li>
+        <li><span class="icon">◆</span>1× RGB fill light (LED 300)</li>
+        <li><span class="icon">◆</span>Softbox + diffuser</li>
+        <li><span class="icon">◆</span>256GB SD card</li>
+      </ul>
+      <div class="pkg-desc">Best for brand shoots, podcast episodes, YouTube content needing colour-graded lighting. The go-to package for creators.</div>
+    </div>
+
+    <!-- SILVER FULL DAY -->
+    <div class="pkg-card">
+      <div class="pkg-badge">STUDIO+</div>
+      <div class="pkg-name">Studio Full</div>
+      <div class="pkg-price">580,000</div>
+      <div class="pkg-price-note">TZS / FULL DAY (8 hrs)</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="icon">◆</span>1× Canon R6 Mark II + stand</li>
+        <li><span class="icon">◆</span>2× audio (DJI Mic Mini + lapel)</li>
+        <li><span class="icon">◆</span>Full 3-light setup (key + fill + RGB)</li>
+        <li><span class="icon">◆</span>Softbox + diffuser</li>
+        <li><span class="icon">◆</span>256GB SD card + backup SSD</li>
+        <li><span class="icon">◆</span>Godox flash unit</li>
+      </ul>
+      <div class="pkg-desc">Full day production. Multiple setups, location shifts. Corporate shoots, mini-documentaries.</div>
+    </div>
+
+    <!-- GOLD -->
+    <div class="pkg-card">
+      <div class="pkg-badge">GOLD</div>
+      <div class="pkg-name">Dual-Cam</div>
+      <div class="pkg-price">650,000</div>
+      <div class="pkg-price-note">TZS / HALF DAY (4 hrs)</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="icon">◆</span>Canon R6 Mark II + Sony A7 III</li>
+        <li><span class="icon">◆</span>2× DJI Mic Mini (2-person audio)</li>
+        <li><span class="icon">◆</span>Full 3-light kit (key + 2 fill)</li>
+        <li><span class="icon">◆</span>DJI Osmo Pocket 3 (B-roll)</li>
+        <li><span class="icon">◆</span>Gimbal + monopod</li>
+        <li><span class="icon">◆</span>2× 256GB SD cards + backup SSD</li>
+      </ul>
+      <div class="pkg-desc">For interviews, panel discussions, podcasts with guests. Two simultaneous camera angles for professional editing.</div>
+    </div>
+
+    <!-- PLATINUM -->
+    <div class="pkg-card">
+      <div class="pkg-badge">PLATINUM</div>
+      <div class="pkg-name">Cinematic</div>
+      <div class="pkg-price">1,200,000</div>
+      <div class="pkg-price-note">TZS / FULL DAY (8 hrs)</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li><span class="icon">◆</span>Sony A7 IV + Canon R6 II + Osmo Pocket 3</li>
+        <li><span class="icon">◆</span>3× DJI Mic Mini (3-person audio)</li>
+        <li><span class="icon">◆</span>Full 4-light setup (key + 3 fills)</li>
+        <li><span class="icon">◆</span>DJI RS4 Gimbal combo</li>
+        <li><span class="icon">◆</span>DJI Drone Mini 4K (aerial shots)</li>
+        <li><span class="icon">◆</span>MacBook on-set for monitoring</li>
+        <li><span class="icon">◆</span>Full storage kit (SSD 1TB + 2× SD)</li>
+      </ul>
+      <div class="pkg-desc">Full cinematic production. Events, brand films, high-end podcast sets, documentaries. Drone aerial included.</div>
+    </div>
+
+  </div>
+
+  <!-- A LA CARTE NOTE -->
+  <div style="background:#111316;border:1px solid rgba(196,154,40,0.12);border-radius:10px;padding:24px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+    <div style="font-size:28px">⚡</div>
+    <div>
+      <div style="font-weight:700;font-size:15px;color:var(--cream);margin-bottom:4px">Need something custom?</div>
+      <div style="font-size:13px;color:var(--mist)">All equipment is also available individually. Mix and match from the equipment catalogue below. Minimum hire = 4 hours per item.</div>
+    </div>
+    <button class="btn-outline" style="margin-left:auto" onclick="document.getElementById('equipment').scrollIntoView({behavior:'smooth'})">Browse à la carte →</button>
+  </div>
+</section>
+
+<!-- EQUIPMENT -->
+<section class="equip" id="equipment">
+  <div class="section-label">Individual Equipment</div>
+  <div class="section-title">HIRE BY THE<br>PIECE</div>
+  <p class="section-desc">Every item from our full inventory available individually. Prices shown as Half-Day (4 hrs) / Full-Day (8 hrs).</p>
+
+  <div class="equip-tabs">
+    <button class="tab active" onclick="filterEquip('all', this)">All</button>
+    <button class="tab" onclick="filterEquip('camera', this)">Cameras</button>
+    <button class="tab" onclick="filterEquip('lens', this)">Lenses</button>
+    <button class="tab" onclick="filterEquip('lighting', this)">Lighting</button>
+    <button class="tab" onclick="filterEquip('audio', this)">Audio</button>
+    <button class="tab" onclick="filterEquip('support', this)">Support</button>
+    <button class="tab" onclick="filterEquip('storage', this)">Storage & Tech</button>
+  </div>
+
+  <div class="equip-grid" id="equipGrid">
+    <!-- Cameras -->
+    <div class="equip-card" data-cat="camera">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Camera Body</div>
+      <div class="equip-name">Sony A7 IV</div>
+      <div class="equip-desc">Latest generation full-frame mirrorless. 33MP stills, 4K60fps video, exceptional low-light. The flagship body in our fleet.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">120,000 / 4hr</span>
+        <span class="price-chip full">200,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="camera">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Camera Body</div>
+      <div class="equip-name">Canon R6 Mark II</div>
+      <div class="equip-desc">40fps burst, 4K uncropped video, outstanding IBIS. Ideal for events, interviews, and run-and-gun documentary work.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">100,000 / 4hr</span>
+        <span class="price-chip full">170,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="camera">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Camera Body</div>
+      <div class="equip-name">Sony A7 III</div>
+      <div class="equip-desc">Workhorse full-frame. 4K video, 10fps, dual SD card slots. Excellent for a reliable B-camera or main camera for run-and-gun.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">80,000 / 4hr</span>
+        <span class="price-chip full">140,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="camera">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Compact Camera</div>
+      <div class="equip-name">DJI Osmo Pocket 3</div>
+      <div class="equip-desc">Ultra-compact 4K60fps with built-in 3-axis gimbal. Perfect B-roll camera, vlogging, and tight-space shooting.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">45,000 / 4hr</span>
+        <span class="price-chip full">75,000 / 8hr</span>
+      </div>
+    </div>
+
+    <!-- Lenses -->
+    <div class="equip-card" data-cat="lens">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Lens</div>
+      <div class="equip-name">Sony G Master 24-105mm f/4</div>
+      <div class="equip-desc">G Master sharpness across the full zoom range. The versatile all-rounder for interviews, events, and portraits.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">60,000 / 4hr</span>
+        <span class="price-chip full">100,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="lens">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Lens</div>
+      <div class="equip-name">Canon f/1.8 / 24-105mm IS USM</div>
+      <div class="equip-desc">Razor-sharp with beautiful bokeh at f/1.8. Outstanding low-light capability. For cinematic, interview, and portrait work.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">55,000 / 4hr</span>
+        <span class="price-chip full">90,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="lens">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Lens</div>
+      <div class="equip-name">Tamron 22-200mm</div>
+      <div class="equip-desc">Extreme versatility in one lens. Wide angle to super telephoto. Great for events, wildlife, and any situation requiring reach.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">40,000 / 4hr</span>
+        <span class="price-chip full">65,000 / 8hr</span>
+      </div>
+    </div>
+
+    <!-- Lighting -->
+    <div class="equip-card" data-cat="lighting">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">LED Light</div>
+      <div class="equip-name">Godox SL 150 (Key Light)</div>
+      <div class="equip-desc">150W daylight-balanced LED panel. Clean, powerful, silent cooling. The industry standard for studio interview setups.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">35,000 / 4hr</span>
+        <span class="price-chip full">55,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="lighting">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Lighting</div>
+      <div class="equip-name">Softbox + Diffuser Kit</div>
+      <div class="equip-desc">Large format softbox producing flattering, soft diffused light. Essential for portrait and interview work. Stand included.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">25,000 / 4hr</span>
+        <span class="price-chip full">40,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="lighting">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">RGB LED</div>
+      <div class="equip-name">LED 300 RGB Panel</div>
+      <div class="equip-desc">Full-spectrum RGB LED. Dial in any colour temperature or create vibrant accent colours for creative, editorial looks.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">20,000 / 4hr</span>
+        <span class="price-chip full">35,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="lighting">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Lighting</div>
+      <div class="equip-name">Neewer FL10 Spotlight</div>
+      <div class="equip-desc">Focused beam spotlight for dramatic lighting effects, product photography, and accent lighting. Barn doors included.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">15,000 / 4hr</span>
+        <span class="price-chip full">25,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="lighting">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Lighting</div>
+      <div class="equip-name">Lantern Light (Orb)</div>
+      <div class="equip-desc">360° soft wrap-around light. Eliminates harsh shadows. Perfect overhead light for circular tables, group settings, interiors.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">20,000 / 4hr</span>
+        <span class="price-chip full">32,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="lighting">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Lighting</div>
+      <div class="equip-name">30W + 20W Fill Light Set</div>
+      <div class="equip-desc">Two-light fill kit for eliminating shadows and providing balanced illumination. Stands included.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">18,000 / 4hr</span>
+        <span class="price-chip full">28,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="lighting">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Flash</div>
+      <div class="equip-name">Godox V850III Flash</div>
+      <div class="equip-desc">Lithium-powered portable flash. 1/8000s HSS, 520 full-power pops per charge. For on-location stills photography lighting.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">22,000 / 4hr</span>
+        <span class="price-chip full">35,000 / 8hr</span>
+      </div>
+    </div>
+
+    <!-- Audio -->
+    <div class="equip-card" data-cat="audio">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Wireless Audio</div>
+      <div class="equip-name">DJI Mic Mini</div>
+      <div class="equip-desc">Clip-on wireless microphone system. 18hr battery, 250m range, magnetic mount. Crystal-clear audio for interviews and vlogs.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">15,000 / 4hr</span>
+        <span class="price-chip full">25,000 / 8hr</span>
+      </div>
+    </div>
+
+    <!-- Support -->
+    <div class="equip-card" data-cat="support">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Stabiliser</div>
+      <div class="equip-name">DJI RS4 Gimbal Combo</div>
+      <div class="equip-desc">3-axis motorised gimbal for silky smooth moving shots. Supports up to 3kg. Bluetooth shutter control. For cinematic movement.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">40,000 / 4hr</span>
+        <span class="price-chip full">65,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="support">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Aerial</div>
+      <div class="equip-name">DJI Mini 4K Drone</div>
+      <div class="equip-desc">Sub-250g drone with 4K camera. 34-min flight time, obstacle sensing. Cinematic aerial shots for events, real estate, travel content.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">80,000 / 4hr</span>
+        <span class="price-chip full">130,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="support">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Support</div>
+      <div class="equip-name">Heavyduty Tripod Stand</div>
+      <div class="equip-desc">Professional fluid-head tripod. Smooth pan and tilt for video. Load capacity 8kg. Ball head with quick-release plate.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">12,000 / 4hr</span>
+        <span class="price-chip full">20,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="support">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Support</div>
+      <div class="equip-name">K&F Camera Stand</div>
+      <div class="equip-desc">Lightweight aluminium tripod with ball head. Max height 165cm. Ideal as second camera support or interview setup.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">10,000 / 4hr</span>
+        <span class="price-chip full">16,000 / 8hr</span>
+      </div>
+    </div>
+
+    <!-- Storage & Tech -->
+    <div class="equip-card" data-cat="storage">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Storage</div>
+      <div class="equip-name">SD Card 256GB 200mbps</div>
+      <div class="equip-desc">High-speed UHS-I card capable of 4K video capture without frame drops. Formatted fresh before each hire.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">8,000 / 4hr</span>
+        <span class="price-chip full">12,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="storage">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Storage</div>
+      <div class="equip-name">SSD 1TB Backup Drive</div>
+      <div class="equip-desc">Fast portable SSD for on-location backup. Transfer speeds 200mbps+. Keep your footage safe during multi-day shoots.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">15,000 / 4hr</span>
+        <span class="price-chip full">22,000 / 8hr</span>
+      </div>
+    </div>
+
+    <div class="equip-card" data-cat="storage">
+      <div class="equip-avail"></div>
+      <div class="equip-cat">Computing</div>
+      <div class="equip-name">MacBook M5 Pro (On-set Monitor)</div>
+      <div class="equip-desc">2025 MacBook M5 Pro 24GB RAM/1TB. Available for on-set monitoring, quick editing, client playback. DaVinci Resolve ready.</div>
+      <div class="equip-pricing">
+        <span class="price-chip half">80,000 / 4hr</span>
+        <span class="price-chip full">130,000 / 8hr</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section class="addons" id="addons">
+  <div class="section-label">Add-On Services</div>
+  <div class="section-title">EXTRAS &<br>SERVICES</div>
+  <p class="section-desc">Enhance your hire with crew, editing, and production services.</p>
+
+  <table class="addon-table">
+    <thead>
+      <tr>
+        <th style="width:35%">Service</th>
+        <th style="width:25%">Price (TZS)</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Camera Operator / DOP</strong><br><div class="note">Professional on-set camera operator</div></td>
+        <td class="price">150,000 / half day<br>250,000 / full day</td>
+        <td>Includes setup and breakdown time</td>
+      </tr>
+      <tr>
+        <td><strong>Drone Pilot</strong><br><div class="note">Licensed drone operator with DJI Mini</div></td>
+        <td class="price">200,000 / session</td>
+        <td>Up to 3 flight sessions. Regulatory clearance client's responsibility</td>
+      </tr>
+      <tr>
+        <td><strong>Basic Video Editing</strong><br><div class="note">Cut, colour, captions — per episode</div></td>
+        <td class="price">100,000 / episode</td>
+        <td>Delivery within 5 working days. Express (48hr) +50,000</td>
+      </tr>
+      <tr>
+        <td><strong>Teaser / Short Clip (60 sec)</strong><br><div class="note">Social media cut from recorded footage</div></td>
+        <td class="price">50,000 / clip</td>
+        <td>Delivered optimised for Instagram/TikTok/YouTube Shorts</td>
+      </tr>
+      <tr>
+        <td><strong>Extra Editing Revision</strong><br><div class="note">Each round beyond the included revision</div></td>
+        <td class="price">+30,000 / round</td>
+        <td>First revision included in editing packages</td>
+      </tr>
+      <tr>
+        <td><strong>Lighting Technician</strong><br><div class="note">Setup, operation, and breakdown</div></td>
+        <td class="price">80,000 / half day<br>130,000 / full day</td>
+        <td>Recommended for 3+ light setups</td>
+      </tr>
+      <tr>
+        <td><strong>Travel (Outside Dar es Salaam)</strong><br><div class="note">Equipment transport + operator travel</div></td>
+        <td class="price">Negotiable</td>
+        <td>Quote provided per location. Minimum 1-day equipment hire applies</td>
+      </tr>
+      <tr>
+        <td><strong>Multi-Day Discount</strong><br><div class="note">3+ consecutive days</div></td>
+        <td class="price">-15% off daily rate</td>
+        <td>Applied automatically to bookings of 3+ days</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- POLICIES -->
+<section class="policies" id="policies">
+  <div class="section-label">Terms & Conditions</div>
+  <div class="section-title">BOOKING<br>POLICIES</div>
+
+  <div class="policy-grid">
+    <div class="policy-card">
+      <div class="policy-icon">💳</div>
+      <div class="policy-title">Payment</div>
+      <div class="policy-text">50% deposit required to confirm booking. Balance due on or before collection. Accepted: M-Pesa, bank transfer, or cash (TZS only).</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-icon">📅</div>
+      <div class="policy-title">Booking & Cancellation</div>
+      <div class="policy-text">Bookings confirmed upon deposit receipt. Cancellations with 72+ hours notice: full deposit refund. Less than 72 hours: deposit forfeited.</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-icon">⏱️</div>
+      <div class="policy-title">Rescheduling</div>
+      <div class="policy-text">Reschedule requests must be made at least 48 hours prior. One free reschedule per booking. Subject to availability.</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-icon">🔧</div>
+      <div class="policy-title">Damage Policy</div>
+      <div class="policy-text">Hirer is responsible for equipment from collection to return. Any damage assessed at replacement cost. A security bond may be required for Platinum bookings.</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-icon">📦</div>
+      <div class="policy-title">Collection & Return</div>
+      <div class="policy-text">Equipment collected and returned at our Dar es Salaam location. Delivery available within DSM at +20,000 TZS per trip. Equipment must be returned in original condition.</div>
+    </div>
+    <div class="policy-card">
+      <div class="policy-icon">🎬</div>
+      <div class="policy-title">Content Ownership</div>
+      <div class="policy-text">All footage captured using hired equipment belongs 100% to the client. Raw footage retained on our backup SSD for 7 days then wiped. Available at additional fee.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-strip" id="contact">
+  <div class="contact-left">
+    <div class="big">BOOK A<br><span>SESSION</span></div>
+    <div class="sub">Available 7 days. Advance booking recommended for weekend dates.</div>
+  </div>
+  <div class="contact-info">
+    <div class="contact-row">
+      <span class="label">WhatsApp</span>
+      <span class="val">+255 — — — — — — — —</span>
+    </div>
+    <div class="contact-row">
+      <span class="label">Email</span>
+      <span class="val">media@ischuscapital.com</span>
+    </div>
+    <div class="contact-row">
+      <span class="label">Instagram</span>
+      <span class="val">@ischuscapital</span>
+    </div>
+    <div class="contact-row">
+      <span class="label">Location</span>
+      <span class="val">Dar es Salaam, Tanzania</span>
+    </div>
+    <div class="contact-row">
+      <span class="label">Hours</span>
+      <span class="val">Mon – Sun, 7:00am – 8:00pm</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Ischus Media — A division of Ischus Capital Ltd</span>
+  <span>All prices in Tanzanian Shillings (TZS) · Subject to change without notice</span>
+</footer>
+
+<script>
+function filterEquip(cat, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.equip-card').forEach(card => {
+    const show = cat === 'all' || card.dataset.cat === cat;
+    card.style.display = show ? 'flex' : 'none';
+  });
+}
+</script>
+</body>
+</html>
