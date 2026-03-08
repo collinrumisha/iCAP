@@ -22,6 +22,8 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     background: var(--ink);
     color: var(--cream);
@@ -30,6 +32,8 @@
     line-height: 1.6;
     overflow-x: hidden;
   }
+
+  img { max-width: 100%; height: auto; }
 
   /* ── HERO ── */
   .hero {
@@ -72,6 +76,7 @@
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex; align-items: center; justify-content: center;
     font-size: 18px; font-weight: 700; color: var(--ink);
+    flex-shrink: 0;
   }
   .logo-text { line-height: 1.1; }
   .logo-text .brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--cream); }
@@ -143,7 +148,7 @@
   .stat:last-child { border-right: none; }
   .stat-n {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px; color: var(--gold); line-height: 1;
+    font-size: clamp(28px, 5vw, 42px); color: var(--gold); line-height: 1;
   }
   .stat-l { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--mist); margin-top: 4px; }
 
@@ -206,7 +211,7 @@
   }
   .pkg-price {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 54px; color: var(--gold); line-height: 1;
+    font-size: clamp(36px, 6vw, 54px); color: var(--gold); line-height: 1;
     margin-bottom: 4px;
   }
   .pkg-price-note { font-size: 11px; color: var(--mist); margin-bottom: 28px; font-family: 'DM Mono', monospace; }
@@ -219,12 +224,32 @@
   .pkg-features li .icon { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
   .pkg-desc { font-size: 12px; color: #5A6070; line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
 
+  /* ── CUSTOM NOTE BOX ── */
+  .custom-note {
+    background: #111316;
+    border: 1px solid rgba(196,154,40,0.12);
+    border-radius: 10px;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .custom-note-icon { font-size: 28px; }
+  .custom-note-content { flex: 1; min-width: 200px; }
+  .custom-note-title { font-weight: 700; font-size: 15px; color: var(--cream); margin-bottom: 4px; }
+  .custom-note-desc { font-size: 13px; color: var(--mist); }
+  .custom-note .btn-outline { flex-shrink: 0; }
+
   /* ── EQUIPMENT RENTAL ── */
   .equip { background: var(--ink); }
   .equip-tabs {
     display: flex; gap: 0; margin-bottom: 40px;
     border: 1px solid rgba(196,154,40,0.15); border-radius: var(--r);
     overflow: hidden; width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .tab {
     padding: 10px 24px; cursor: pointer;
@@ -232,6 +257,8 @@
     font-weight: 600; transition: all 0.2s;
     background: transparent; border: none; color: var(--mist);
     font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    min-height: 44px;
   }
   .tab.active { background: var(--gold); color: var(--ink); }
   .tab:hover:not(.active) { color: var(--gold); }
@@ -284,10 +311,16 @@
 
   /* ── ADD-ONS ── */
   .addons { background: #0A0B0D; }
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+  }
   .addon-table {
     width: 100%; border-collapse: collapse;
     border: 1px solid rgba(196,154,40,0.12);
     border-radius: 10px; overflow: hidden;
+    min-width: 600px;
   }
   .addon-table th {
     background: rgba(196,154,40,0.12);
@@ -376,10 +409,217 @@
     font-size: 11px; font-family: 'DM Mono', monospace;
   }
 
+  /* ═══════════════════════════════════════════════════
+     RESPONSIVE BREAKPOINTS
+     ═══════════════════════════════════════════════════ */
+
+  /* ── TABLET LANDSCAPE (≤1024px) ── */
+  @media (max-width: 1024px) {
+    nav, section, .hero-body, .hero-stats, .contact-strip, footer {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+    section { padding-top: 80px; padding-bottom: 80px; }
+
+    .packages-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .equip-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .policy-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ── TABLET PORTRAIT / SMALL TABLET (≤768px) ── */
   @media (max-width: 768px) {
-    nav, section, .hero-body, .hero-stats, .contact-strip, footer { padding-left: 24px; padding-right: 24px; }
-    .hero-stats { flex-direction: column; }
-    .stat { border-right: none; border-bottom: 1px solid rgba(196,154,40,0.1); }
+    nav, section, .hero-body, .hero-stats, .contact-strip, footer {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    section { padding-top: 64px; padding-bottom: 64px; }
+
+    /* Nav */
+    nav {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .logo-mark { justify-content: center; }
+
+    /* Hero */
+    .hero-body { padding-top: 40px; padding-bottom: 40px; }
+    .hero-sub { font-size: 15px; margin-bottom: 36px; }
+
+    /* Hero Stats */
+    .hero-stats {
+      flex-direction: column;
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+    .stat {
+      border-right: none;
+      border-bottom: 1px solid rgba(196,154,40,0.1);
+      padding: 14px 20px;
+    }
+    .stat:last-child { border-bottom: none; }
+
+    /* Packages */
+    .packages-grid {
+      grid-template-columns: 1fr;
+    }
+    .pkg-card { padding: 32px 24px; }
+    .pkg-name { font-size: 34px; }
+
+    /* Custom Note */
+    .custom-note {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px;
+    }
+    .custom-note .btn-outline {
+      width: 100%;
+    }
+
+    /* Equipment */
+    .equip-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Add-ons table */
+    .addon-table th,
+    .addon-table td {
+      padding: 12px 16px;
+      font-size: 13px;
+    }
+
+    /* Policies */
+    .policy-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* Contact */
+    .contact-strip {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      gap: 32px;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    .contact-info { align-items: center; }
+    .contact-row {
+      flex-direction: column;
+      gap: 4px;
+    }
+    .contact-row .label { min-width: unset; }
+
+    /* Footer */
+    footer {
+      flex-direction: column;
+      text-align: center;
+      gap: 8px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    /* Section description */
+    .section-desc { margin-bottom: 40px; }
+  }
+
+  /* ── MOBILE (≤480px) ── */
+  @media (max-width: 480px) {
+    nav, section, .hero-body, .hero-stats, .contact-strip, footer {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    section { padding-top: 48px; padding-bottom: 48px; }
+
+    /* Nav */
+    nav { padding-top: 16px; padding-bottom: 16px; }
+    .logo-icon { width: 36px; height: 36px; font-size: 15px; }
+    .logo-text .brand { font-size: 19px; letter-spacing: 2px; }
+    .logo-text .sub { font-size: 9px; letter-spacing: 3px; }
+    .nav-tag { font-size: 10px; letter-spacing: 2px; }
+
+    /* Hero */
+    .hero-body { padding-top: 32px; padding-bottom: 32px; }
+    .hero-eyebrow { font-size: 10px; letter-spacing: 3px; gap: 10px; margin-bottom: 18px; }
+    .hero-title {
+      font-size: clamp(52px, 14vw, 80px);
+      margin-bottom: 24px;
+    }
+    .hero-sub { font-size: 14px; line-height: 1.7; margin-bottom: 28px; }
+
+    /* Hero CTA — stack full width */
+    .hero-cta-row {
+      flex-direction: column;
+      width: 100%;
+    }
+    .hero-cta-row .btn-primary,
+    .hero-cta-row .btn-outline {
+      width: 100%;
+      text-align: center;
+      padding: 16px 24px;
+      min-height: 48px;
+    }
+
+    /* Hero Stats */
+    .stat { padding: 10px 16px; }
+
+    /* Packages */
+    .packages-grid {
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+    .pkg-card { padding: 28px 20px; }
+    .pkg-name { font-size: 30px; }
+
+    /* Custom Note */
+    .custom-note { padding: 20px 16px; gap: 14px; }
+
+    /* Equipment Tabs — scrollable, minimal padding */
+    .equip-tabs { margin-bottom: 24px; }
+    .tab { padding: 10px 16px; font-size: 11px; letter-spacing: 1px; }
+
+    /* Equipment Cards */
+    .equip-card { padding: 20px; }
+    .equip-name { font-size: 15px; }
+    .price-chip { font-size: 10px; padding: 5px 10px; }
+
+    /* Add-ons */
+    .addon-table { min-width: 520px; }
+    .addon-table th,
+    .addon-table td {
+      padding: 10px 12px;
+      font-size: 12px;
+    }
+
+    /* Policies */
+    .policy-card { padding: 22px 20px; }
+
+    /* Contact */
+    .contact-strip { padding-top: 48px; padding-bottom: 48px; gap: 24px; }
+    .contact-row { font-size: 13px; }
+
+    /* Footer */
+    footer { font-size: 10px; padding-top: 16px; padding-bottom: 16px; }
+
+    /* Buttons — ensure touch-friendly size */
+    .btn-primary, .btn-outline { min-height: 44px; }
+  }
+
+  /* ── VERY SMALL SCREENS (≤360px) ── */
+  @media (max-width: 360px) {
+    .hero-title { font-size: 48px; }
+    .pkg-name { font-size: 26px; }
+    .pkg-price { font-size: 32px; }
+    .stat-n { font-size: 24px; }
+    .section-title { font-size: 32px; }
+    .contact-left .big { font-size: 32px; }
   }
 </style>
 </head>
@@ -536,13 +776,13 @@
   </div>
 
   <!-- A LA CARTE NOTE -->
-  <div style="background:#111316;border:1px solid rgba(196,154,40,0.12);border-radius:10px;padding:24px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-    <div style="font-size:28px">⚡</div>
-    <div>
-      <div style="font-weight:700;font-size:15px;color:var(--cream);margin-bottom:4px">Need something custom?</div>
-      <div style="font-size:13px;color:var(--mist)">All equipment is also available individually. Mix and match from the equipment catalogue below. Minimum hire = 4 hours per item.</div>
+  <div class="custom-note">
+    <div class="custom-note-icon">⚡</div>
+    <div class="custom-note-content">
+      <div class="custom-note-title">Need something custom?</div>
+      <div class="custom-note-desc">All equipment is also available individually. Mix and match from the equipment catalogue below. Minimum hire = 4 hours per item.</div>
     </div>
-    <button class="btn-outline" style="margin-left:auto" onclick="document.getElementById('equipment').scrollIntoView({behavior:'smooth'})">Browse à la carte →</button>
+    <button class="btn-outline" onclick="document.getElementById('equipment').scrollIntoView({behavior:'smooth'})">Browse à la carte →</button>
   </div>
 </section>
 
@@ -819,57 +1059,59 @@
   <div class="section-title">EXTRAS &<br>SERVICES</div>
   <p class="section-desc">Enhance your hire with crew, editing, and production services.</p>
 
-  <table class="addon-table">
-    <thead>
-      <tr>
-        <th style="width:35%">Service</th>
-        <th style="width:25%">Price (TZS)</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Camera Operator / DOP</strong><br><div class="note">Professional on-set camera operator</div></td>
-        <td class="price">150,000 / half day<br>250,000 / full day</td>
-        <td>Includes setup and breakdown time</td>
-      </tr>
-      <tr>
-        <td><strong>Drone Pilot</strong><br><div class="note">Licensed drone operator with DJI Mini</div></td>
-        <td class="price">200,000 / session</td>
-        <td>Up to 3 flight sessions. Regulatory clearance client's responsibility</td>
-      </tr>
-      <tr>
-        <td><strong>Basic Video Editing</strong><br><div class="note">Cut, colour, captions — per episode</div></td>
-        <td class="price">100,000 / episode</td>
-        <td>Delivery within 5 working days. Express (48hr) +50,000</td>
-      </tr>
-      <tr>
-        <td><strong>Teaser / Short Clip (60 sec)</strong><br><div class="note">Social media cut from recorded footage</div></td>
-        <td class="price">50,000 / clip</td>
-        <td>Delivered optimised for Instagram/TikTok/YouTube Shorts</td>
-      </tr>
-      <tr>
-        <td><strong>Extra Editing Revision</strong><br><div class="note">Each round beyond the included revision</div></td>
-        <td class="price">+30,000 / round</td>
-        <td>First revision included in editing packages</td>
-      </tr>
-      <tr>
-        <td><strong>Lighting Technician</strong><br><div class="note">Setup, operation, and breakdown</div></td>
-        <td class="price">80,000 / half day<br>130,000 / full day</td>
-        <td>Recommended for 3+ light setups</td>
-      </tr>
-      <tr>
-        <td><strong>Travel (Outside Dar es Salaam)</strong><br><div class="note">Equipment transport + operator travel</div></td>
-        <td class="price">Negotiable</td>
-        <td>Quote provided per location. Minimum 1-day equipment hire applies</td>
-      </tr>
-      <tr>
-        <td><strong>Multi-Day Discount</strong><br><div class="note">3+ consecutive days</div></td>
-        <td class="price">-15% off daily rate</td>
-        <td>Applied automatically to bookings of 3+ days</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-scroll">
+    <table class="addon-table">
+      <thead>
+        <tr>
+          <th style="width:35%">Service</th>
+          <th style="width:25%">Price (TZS)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Camera Operator / DOP</strong><br><div class="note">Professional on-set camera operator</div></td>
+          <td class="price">150,000 / half day<br>250,000 / full day</td>
+          <td>Includes setup and breakdown time</td>
+        </tr>
+        <tr>
+          <td><strong>Drone Pilot</strong><br><div class="note">Licensed drone operator with DJI Mini</div></td>
+          <td class="price">200,000 / session</td>
+          <td>Up to 3 flight sessions. Regulatory clearance client's responsibility</td>
+        </tr>
+        <tr>
+          <td><strong>Basic Video Editing</strong><br><div class="note">Cut, colour, captions — per episode</div></td>
+          <td class="price">100,000 / episode</td>
+          <td>Delivery within 5 working days. Express (48hr) +50,000</td>
+        </tr>
+        <tr>
+          <td><strong>Teaser / Short Clip (60 sec)</strong><br><div class="note">Social media cut from recorded footage</div></td>
+          <td class="price">50,000 / clip</td>
+          <td>Delivered optimised for Instagram/TikTok/YouTube Shorts</td>
+        </tr>
+        <tr>
+          <td><strong>Extra Editing Revision</strong><br><div class="note">Each round beyond the included revision</div></td>
+          <td class="price">+30,000 / round</td>
+          <td>First revision included in editing packages</td>
+        </tr>
+        <tr>
+          <td><strong>Lighting Technician</strong><br><div class="note">Setup, operation, and breakdown</div></td>
+          <td class="price">80,000 / half day<br>130,000 / full day</td>
+          <td>Recommended for 3+ light setups</td>
+        </tr>
+        <tr>
+          <td><strong>Travel (Outside Dar es Salaam)</strong><br><div class="note">Equipment transport + operator travel</div></td>
+          <td class="price">Negotiable</td>
+          <td>Quote provided per location. Minimum 1-day equipment hire applies</td>
+        </tr>
+        <tr>
+          <td><strong>Multi-Day Discount</strong><br><div class="note">3+ consecutive days</div></td>
+          <td class="price">-15% off daily rate</td>
+          <td>Applied automatically to bookings of 3+ days</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <!-- POLICIES -->
@@ -920,11 +1162,11 @@
   <div class="contact-info">
     <div class="contact-row">
       <span class="label">WhatsApp</span>
-      <span class="val">+255 — — — — — — — —</span>
+      <span class="val">+255 620 202 077</span>
     </div>
     <div class="contact-row">
       <span class="label">Email</span>
-      <span class="val">media@ischuscapital.com</span>
+      <span class="val">ischuscapital@gmail.com</span>
     </div>
     <div class="contact-row">
       <span class="label">Instagram</span>
