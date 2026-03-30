@@ -555,7 +555,7 @@
 
     /* Nav */
     nav {
-      position: sticky;
+      position: fixed;
       width: calc(100% - 22px);
       top: 10px;
       left: auto;
@@ -682,7 +682,7 @@
 
     /* Nav */
     nav {
-      position: sticky;
+      position: fixed;
       width: calc(100% - 16px);
       top: 8px;
       left: auto;
