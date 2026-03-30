@@ -320,6 +320,8 @@
     text-align: left; padding: 16px 24px;
     font-weight: 600; font-family: 'DM Mono', monospace;
   }
+  .addon-col-service { width: 35%; }
+  .addon-col-price { width: 25%; }
   .addon-table td {
     padding: 16px 24px; border-top: 1px solid rgba(255,255,255,0.04);
     font-size: 14px; color: var(--cream);

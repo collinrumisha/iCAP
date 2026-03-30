@@ -30,8 +30,8 @@
       Professional-grade camera systems, cinema lighting, and audio gear — available for <span>half-day, full-day, and multi-day</span> hire in Dar es Salaam.
     </p>
     <div class="hero-cta-row">
-      <button class="btn-primary" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">View Packages</button>
-      <button class="btn-outline" onclick="document.getElementById('equipment').scrollIntoView({behavior:'smooth'})">Browse Equipment</button>
+      <button class="btn-primary js-scroll-target" data-target="packages">View Packages</button>
+      <button class="btn-outline js-scroll-target" data-target="equipment">Browse Equipment</button>
     </div>
   </div>
 
@@ -166,7 +166,7 @@
       <div class="custom-note-title">Need something custom?</div>
       <div class="custom-note-desc">All equipment is also available individually. Mix and match from the equipment catalogue below. Minimum hire = 4 hours per item.</div>
     </div>
-    <button class="btn-outline" onclick="document.getElementById('equipment').scrollIntoView({behavior:'smooth'})">Browse à la carte →</button>
+    <button class="btn-outline js-scroll-target" data-target="equipment">Browse à la carte →</button>
   </div>
 </section>
 
@@ -177,13 +177,13 @@
   <p class="section-desc">Every item from our full inventory available individually. Prices shown as Half-Day (4 hrs) / Full-Day (8 hrs).</p>
 
   <div class="equip-tabs">
-    <button class="tab active" onclick="filterEquip('all', this)">All</button>
-    <button class="tab" onclick="filterEquip('camera', this)">Cameras</button>
-    <button class="tab" onclick="filterEquip('lens', this)">Lenses</button>
-    <button class="tab" onclick="filterEquip('lighting', this)">Lighting</button>
-    <button class="tab" onclick="filterEquip('audio', this)">Audio</button>
-    <button class="tab" onclick="filterEquip('support', this)">Support</button>
-    <button class="tab" onclick="filterEquip('storage', this)">Storage & Tech</button>
+    <button class="tab js-filter-tab active" data-cat="all">All</button>
+    <button class="tab js-filter-tab" data-cat="camera">Cameras</button>
+    <button class="tab js-filter-tab" data-cat="lens">Lenses</button>
+    <button class="tab js-filter-tab" data-cat="lighting">Lighting</button>
+    <button class="tab js-filter-tab" data-cat="audio">Audio</button>
+    <button class="tab js-filter-tab" data-cat="support">Support</button>
+    <button class="tab js-filter-tab" data-cat="storage">Storage & Tech</button>
   </div>
 
   <div class="equip-grid" id="equipGrid">
@@ -447,8 +447,8 @@
     <table class="addon-table">
       <thead>
         <tr>
-          <th style="width:35%">Service</th>
-          <th style="width:25%">Price (TZS)</th>
+          <th class="addon-col-service">Service</th>
+          <th class="addon-col-price">Price (TZS)</th>
           <th>Notes</th>
         </tr>
       </thead>
@@ -571,5 +571,6 @@
   <span>© 2026 Ischus Media — A division of Ischus Capital Ltd</span>
   <span>All prices in Tanzanian Shillings (TZS) · Subject to change without notice</span>
 </footer>
+<script src="index.js"></script>
 </body>
 </html>
