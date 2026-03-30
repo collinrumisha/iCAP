@@ -83,6 +83,24 @@ function renderEquipmentImages() {
 document.addEventListener('DOMContentLoaded', () => {
   renderEquipmentImages();
 
+  const nav = document.querySelector('nav');
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  if (nav && navToggle) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('nav-open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   document.querySelectorAll('.js-scroll-target').forEach(button => {
     button.addEventListener('click', () => {
       const targetId = button.dataset.target;
