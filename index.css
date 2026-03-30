@@ -273,6 +273,33 @@
     border-color: rgba(196,154,40,0.3);
     transform: translateY(-3px);
   }
+  .equip-card::before {
+    content: 'Equipment Image Placeholder';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin-bottom: 18px;
+    border-radius: 8px;
+    border: 1px dashed rgba(196,154,40,0.35);
+    background:
+      linear-gradient(135deg, rgba(196,154,40,0.08), rgba(46,63,88,0.2)),
+      repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.02) 0,
+        rgba(255,255,255,0.02) 10px,
+        rgba(255,255,255,0.04) 10px,
+        rgba(255,255,255,0.04) 20px
+      );
+    color: var(--gold-lt);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 12px;
+  }
   .equip-cat {
     font-family: 'DM Mono', monospace;
     font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
@@ -283,17 +310,6 @@
     margin-bottom: 6px; line-height: 1.3;
   }
   .equip-desc { font-size: 12px; color: #5A6070; line-height: 1.6; flex: 1; margin-bottom: 20px; }
-  .equip-pricing {
-    display: flex; gap: 8px; flex-wrap: wrap;
-  }
-  .price-chip {
-    padding: 6px 14px;
-    border-radius: 4px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 500;
-  }
-  .price-chip.half { background: rgba(196,154,40,0.08); color: var(--gold); border: 1px solid rgba(196,154,40,0.15); }
-  .price-chip.full { background: rgba(196,154,40,0.18); color: var(--gold-lt); border: 1px solid rgba(196,154,40,0.25); }
   .equip-avail {
     position: absolute; top: 18px; right: 18px;
     width: 8px; height: 8px; border-radius: 50%;
