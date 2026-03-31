@@ -34,7 +34,7 @@ const equipmentImageMap = {
   'Soft Box': 'assets/Softbox%20%2B%20Diffuser%20Kit%2045.jpg',
   'LED 300 RGB Panel': 'assets/LED 300 RGB Panel.webp',
   'Neewer FL10 Spotlight': 'assets/Neewer FL10 Spotlight.jpeg',
-  'Lantern Light (Orb)': 'assets/Lantern Light (Orb).jpg',
+  'Lantern Light (Orb)': 'assets/Lantern-Light-(Orb).jpg',
   '30W + 20W Fill Light Set': 'assets/30W%20%2B%2020W%20Fill%20Light%20Set.jpg',
   'Godox V850III Flash': 'assets/Godox V850III Flash.webp',
   'DJI Mic Mini': 'assets/DJI Mic Mini.png',

@@ -364,7 +364,7 @@
     object-position: center;
     display: block;
     padding: 6px;
-    background: whitez;
+    background: white;
   }
   .equip-card::before {
     content: 'Equipment Image Placeholder';
