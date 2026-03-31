@@ -364,7 +364,7 @@
     object-position: center;
     display: block;
     padding: 6px;
-    background: white;
+    background: whitez;
   }
   .equip-card::before {
     content: 'Equipment Image Placeholder';
@@ -495,6 +495,11 @@
     flex-wrap: wrap; gap: 12px;
     font-size: 11px; color: #3A4050;
     font-family: 'DM Mono', monospace; letter-spacing: 1px;
+  }
+
+  .val > a{
+    text-decoration: none;
+    color: white;
   }
 
   /* ── ANIMATIONS ── */
