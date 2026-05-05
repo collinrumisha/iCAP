@@ -4,9 +4,9 @@
     --gold: #C49A28;
     --gold-lt: #E8D48A;
     --gold-dk: #8A6A10;
-    --slate: #1A2535;
+    --dark-navy: #0D1B33;
     --slate-lt: #2E3F58;
-    --mist: #B8C4D0;
+    --light-g: #F4F4F4;
     --white: #FAFAFA;
     --red: #C0392B;
     --green: #1A8A5A;
@@ -32,7 +32,7 @@
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    background: linear-gradient(160deg, #0D0E10 0%, #1A2535 60%, #0D1A10 100%);
+    background: var(--dark-navy);
     position: relative;
     overflow: hidden;
   }
@@ -47,8 +47,8 @@
   .hero-grid {
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(196,154,40,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(196,154,40,0.04) 1px, transparent 1px);
+      /* linear-gradient(rgba(196,154,40,0.04) 1px, transparent 1px), */
+      /* linear-gradient(90deg, rgba(196,154,40,0.04) 1px, transparent 1px); */;
     background-size: 60px 60px;
     pointer-events: none;
   }
@@ -85,7 +85,7 @@
 
   .nav-tag {
     font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--mist); font-family: 'DM Mono', monospace;
+    color: var(--light-g); font-family: 'DM Mono', monospace;
     padding: 8px 14px;
     border-radius: 999px;
     /* border: 1px solid rgba(255,255,255,0.16); */
@@ -101,7 +101,7 @@
     border: none;
   }
   .nav-links a {
-    color: var(--mist);
+    color: var(--light-g);
     text-decoration: none;
     font-size: 11px;
     letter-spacing: 1px;
@@ -161,13 +161,14 @@
     font-size: clamp(72px, 12vw, 160px);
     line-height: 0.88;
     letter-spacing: 2px;
-    background: linear-gradient(160deg, #FAFAFA 0%, #C49A28 50%, #8A6A10 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    color: var(--light-g);
+    /* background: linear-gradient(160deg, #FAFAFA 0%, #C49A28 50%, #8A6A10 100%); */
+    /* -webkit-background-clip: text; -webkit-text-fill-color: transparent; */
     background-clip: text;
     margin-bottom: 32px;
   }
   .hero-sub {
-    font-size: 16px; color: var(--mist); max-width: 520px;
+    font-size: 16px; color: var(--light-g); max-width: 520px;
     line-height: 1.8; margin-bottom: 48px;
   }
   .hero-sub span { color: var(--gold-lt); font-weight: 500; }
@@ -205,7 +206,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(28px, 5vw, 42px); color: var(--gold); line-height: 1;
   }
-  .stat-l { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--mist); margin-top: 4px; }
+  .stat-l { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--light-g); margin-top: 4px; }
 
   /* ── SECTION COMMON ── */
   section { padding: 100px 60px; }
@@ -220,7 +221,7 @@
     line-height: 1; letter-spacing: 1px;
     color: var(--cream); margin-bottom: 20px;
   }
-  .section-desc { color: var(--mist); max-width: 600px; line-height: 1.8; margin-bottom: 60px; }
+  .section-desc { color: var(--light-g); max-width: 600px; line-height: 1.8; margin-bottom: 60px; }
 
   /* ── PACKAGES ── */
   .packages { background: #0A0B0D; }
@@ -272,12 +273,12 @@
     font-size: clamp(36px, 6vw, 54px); color: var(--gold); line-height: 1;
     margin-bottom: 4px;
   }
-  .pkg-price-note { font-size: 11px; color: var(--mist); margin-bottom: 28px; font-family: 'DM Mono', monospace; }
+  .pkg-price-note { font-size: 11px; color: var(--light-g); margin-bottom: 28px; font-family: 'DM Mono', monospace; }
   .pkg-divider { height: 1px; background: rgba(196,154,40,0.12); margin-bottom: 24px; }
   .pkg-features { list-style: none; margin-bottom: 28px; }
   .pkg-features li {
     display: flex; gap: 10px; align-items: flex-start;
-    font-size: 13px; color: var(--mist); margin-bottom: 8px; line-height: 1.5;
+    font-size: 13px; color: var(--light-g); margin-bottom: 8px; line-height: 1.5;
   }
   .pkg-features li .icon { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
   .pkg-desc { font-size: 12px; color: #5A6070; line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
@@ -297,7 +298,7 @@
   .custom-note-icon { font-size: 28px; }
   .custom-note-content { flex: 1; min-width: 200px; }
   .custom-note-title { font-weight: 700; font-size: 15px; color: var(--cream); margin-bottom: 4px; }
-  .custom-note-desc { font-size: 13px; color: var(--mist); }
+  .custom-note-desc { font-size: 13px; color: var(--light-g); }
   .custom-note .btn-outline { flex-shrink: 0; }
 
   /* ── EQUIPMENT RENTAL ── */
@@ -314,7 +315,7 @@
     padding: 10px 24px; cursor: pointer;
     font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
     font-weight: 600; transition: all 0.2s;
-    background: transparent; border: none; color: var(--mist);
+    background: transparent; border: none; color: var(--light-g);
     font-family: 'DM Sans', sans-serif;
     white-space: nowrap;
     min-height: 44px;
@@ -433,7 +434,7 @@
     vertical-align: middle;
   }
   .addon-table tr:hover td { background: rgba(196,154,40,0.03); }
-  .addon-table .note { font-size: 11px; color: var(--mist); margin-top: 3px; }
+  .addon-table .note { font-size: 11px; color: var(--light-g); margin-top: 3px; }
 
   /* ── POLICIES ── */
   .policies { background: var(--ink); }
@@ -455,11 +456,11 @@
   }
   .policy-icon { font-size: 28px; margin-bottom: 14px; }
   .policy-title { font-weight: 700; font-size: 15px; color: var(--cream); margin-bottom: 10px; }
-  .policy-text { font-size: 13px; color: var(--mist); line-height: 1.7; }
+  .policy-text { font-size: 13px; color: var(--light-g); line-height: 1.7; }
 
   /* ── CONTACT ── */
   .contact-strip {
-    background: linear-gradient(135deg, var(--slate) 0%, #0D1A10 100%);
+    background: linear-gradient(135deg, var(--dark-navy) 0%, #0D1A10 100%);
     border-top: 1px solid rgba(196,154,40,0.2);
     padding: 80px 60px;
     display: flex; align-items: center; justify-content: space-between;
@@ -471,7 +472,7 @@
     line-height: 1; color: var(--cream);
   }
   .contact-left .big span { color: var(--gold); }
-  .contact-left .sub { color: var(--mist); margin-top: 12px; font-size: 14px; }
+  .contact-left .sub { color: var(--light-g); margin-top: 12px; font-size: 14px; }
   .contact-info { display: flex; flex-direction: column; gap: 12px; }
   .contact-row {
     display: flex; align-items: center; gap: 12px;
