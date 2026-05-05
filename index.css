@@ -79,6 +79,7 @@
   .logo-mark img{
     width: 45px;
     height: 45px;
+    margin-left: 1.2rem;
     object-fit: contain;
   }
 
